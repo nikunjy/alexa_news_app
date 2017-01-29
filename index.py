@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_ask import Ask, question, statement, convert_errors
 import requests
 import random
@@ -115,7 +115,14 @@ def get_all_topics():
 
 @app.route('/')
 def homepage():
-    return _get_headlines("world")
+    args = request.args
+    topic = args["topic"]
+    topic = topic.lower()
+    logger.info(topic)
+    topic = _get_valid_topic(topic)
+    if topic is None:
+        return "Don't understand that topic {}".format(topic)
+    return _get_headlines(topic)
 
 
 @ask.intent('AMAZON.HelpIntent')
