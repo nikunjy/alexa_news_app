@@ -4,16 +4,20 @@ import requests
 import json
 import os
 import unidecode
+import config
 app = Flask(__name__)
 ask = Ask(app, "/")
+API_KEY = config.NYTIMES_API_KEY
 
 
-def _get_headlines():
+def _get_headlines(headline_topic):
     """
     Gets the headlines from new york times
     :return:
     """
-    url = "http://api.nytimes.com/svc/topstories/v2/world.json?api-key=66fa8330903e437783df1965800be3d7"
+    url_format =  "http://api.nytimes.com/svc/topstories/v2/%s.json?api-key=%s"
+    url = url_format % (headline_topic, API_KEY)
+    print url
     data = json.loads(requests.get(url).text)
     headlines = []
     index = 1
@@ -35,13 +39,13 @@ def _get_headlines():
 
 @ask.intent("GetNewsIntent")
 def get_headlines():
-    headline_string = _get_headlines()
+    headline_string = _get_headlines("world")
     return statement(headline_string)
 
 
 @app.route('/')
 def homepage():
-    return _get_headlines()
+    return _get_headlines("world")
 
 
 @ask.launch
@@ -50,4 +54,4 @@ def start_skill():
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port = port)
+    app.run(host='0.0.0.0', port=port, debug=True)
