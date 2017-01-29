@@ -2,6 +2,7 @@ from flask import Flask
 from flask_ask import Ask, question, statement
 import requests
 import json
+import os
 import unidecode
 app = Flask(__name__)
 ask = Ask(app, "/")
@@ -48,4 +49,5 @@ def start_skill():
   return question("Would you like the top news ?")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port = port)
