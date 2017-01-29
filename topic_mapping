@@ -1,0 +1,11 @@
+{
+    "technology": ["tech", "computers", "IT", "silicon valley", "bay area"],
+    "world": ["recent", "recent events", "current affairs"],
+    "politics": ["congress", "senate", "DC", "washington", "trump"],
+    "business": ["finance", "money", "cash", "dollars"],
+    "travel": ["travelling", "leisure", "roaming around the world", "trips"],
+    "national": ["united states", "country"],
+    "arts": ["music", "fine arts"],
+    "health": ["medicine", "paramedics", "medical"]
+
+}

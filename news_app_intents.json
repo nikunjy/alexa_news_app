@@ -10,6 +10,9 @@
       ]
     },
     {
+      "intent": "AllTopicsIntent"
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     },
     {

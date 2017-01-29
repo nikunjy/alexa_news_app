@@ -1,10 +1,16 @@
 GetNewsIntent {Topic}
 GetNewsIntent Read me {Topic}
+GetNewsIntent news from {Topic}
 GetNewsIntent I would like {Topic}
+GetNewsIntent I wanna know about {Topic}
+
+AllTopicsIntent what are the topics
+AllTopicsIntent I don't know
+AllTopicsIntent No idea
 
 AMAZON.HelpIntent help
-AMAZON.HelpIntent what do I do 
-AMAZON.HelpIntent help me 
+AMAZON.HelpIntent what do I do
+AMAZON.HelpIntent help me
 
 AMAZON.StopIntent no
 AMAZON.StopIntent nope
