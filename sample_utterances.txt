@@ -1,0 +1,10 @@
+GetNewsIntent yes
+
+AMAZON.HelpIntent help
+AMAZON.HelpIntent what do I do 
+AMAZON.HelpIntent help me 
+
+AMAZON.StopIntent no
+AMAZON.StopIntent nope
+AMAZON.StopIntent no thanks
+AMAZON.StopIntent no thank you
