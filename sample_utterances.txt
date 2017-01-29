@@ -1,4 +1,6 @@
-GetNewsIntent yes
+GetNewsIntent {Topic}
+GetNewsIntent Read me {Topic}
+GetNewsIntent I would like {Topic}
 
 AMAZON.HelpIntent help
 AMAZON.HelpIntent what do I do 

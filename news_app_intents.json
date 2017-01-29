@@ -1,10 +1,13 @@
 {
   "intents": [
     {
-      "intent": "GetNewsIntent"
-    },
-    {
-      "intent": "GetNextEventIntent"
+      "intent": "GetNewsIntent",
+      "slots": [
+        {
+          "name": "Topic",
+          "type": "LIST_OF_TOPICS"
+        }
+      ]
     },
     {
       "intent": "AMAZON.HelpIntent"

@@ -8,7 +8,7 @@ import config
 app = Flask(__name__)
 ask = Ask(app, "/")
 API_KEY = config.NYTIMES_API_KEY
-
+REPROMT_MSG = "You can say topics like world, technology, science, arts"
 
 def _get_headlines(headline_topic):
     """
@@ -37,9 +37,11 @@ def _get_headlines(headline_topic):
     return headline_string
 
 
-@ask.intent("GetNewsIntent")
-def get_headlines():
-    headline_string = _get_headlines("world")
+@ask.intent("GetNewsIntent", mapping={'topic': 'Topic'})
+def get_headlines(topic):
+    if topic is None:
+        topic = "world"
+    headline_string = _get_headlines(topic)
     return statement(headline_string)
 
 
@@ -47,10 +49,25 @@ def get_headlines():
 def homepage():
     return _get_headlines("world")
 
+@ask.intent('AMAZON.HelpIntent')
+def help():
+  return statement(REPROMT_MSG)
+
+
+@ask.intent('AMAZON.StopIntent')
+def stop():
+    return statement("Goodbye")
+
+
+@ask.intent('AMAZON.CancelIntent')
+def cancel():
+    return statement("Goodbye")
+
 
 @ask.launch
 def start_skill():
-  return question("Would you like the top news ?")
+    reprompt_msg = REPROMT_MSG
+    return question("What topic would you like the top news for ?").reprompt(reprompt_msg)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
